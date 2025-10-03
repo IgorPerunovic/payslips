@@ -6,7 +6,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { Payslip } from "../types/payslip";
 import { usePayslips } from "../context/mainContext";
-import { downloadPayslip } from "../api/mockApi";
+import { downloadPayslip } from "../helpers/fileHelper";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Details">;
 
@@ -18,8 +18,6 @@ const DetailsScreen = ({ route }: Props) => {
   const [downloading, setDownloading] = useState(false); 
   const [localUri, setLocalUri] = useState<string>(""); //this is where we store the uri after we "download" the image or pdf. 
                                                                 //Normally we'd cache this instead of having to download every time, but I didn't have the time for that now
-
-
   const openExternally = async () => {
     if (Platform.OS === 'ios') {
       // iOS can just open the file with default PDF app
@@ -77,7 +75,6 @@ const handleDownload = async () => {
       }
       </View>
       
-      
       {payslip.file.type === "image" ? (
         <View style={styles.previewContainer}>
           { downloading ? 
@@ -125,7 +122,6 @@ const handleDownload = async () => {
 };
 
 const { width, height } = Dimensions.get("window");
-
 
 export default DetailsScreen;
 

@@ -1,4 +1,3 @@
-// types/payslip.ts
 export type FileType = "image" | "pdf";
 
 export interface Payslip {

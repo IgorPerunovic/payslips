@@ -13,17 +13,44 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.igorperunovic.payslips"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "permissions": [
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.AUDIO",
+        "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+        "android.permission.ACCESS_MEDIA_LOCATION",
+        "android.permission.READ_MEDIA_AUDIO"
+      ],
+      "edgeToEdgeEnabled": true,
+      "package": "com.igorperunovic.payslips"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
+    // ,
+    // "plugins": [
+      // "expo-asset",
+      // [
+        // "expo-media-library",
+        // {
+        //   "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+        //   "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+        //   "isAccessMediaLocationEnabled": true,
+        //   "granularPermissions": [
+        //     "audio",
+        //     "photo"
+        //   ]
+        // }
+      // ]
+    // ]
   }
 }

@@ -7,6 +7,7 @@ import { RootStackParamList } from "../../App";
 import { Payslip } from "../types/payslip";
 import { usePayslips } from "../context/mainContext";
 import { downloadPayslip } from "../helpers/fileHelper";
+import { useApi } from "../context/apiContext";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Details">;
 
@@ -18,6 +19,9 @@ const DetailsScreen = ({ route }: Props) => {
   const [downloading, setDownloading] = useState(false); 
   const [localUri, setLocalUri] = useState<string>(""); //this is where we store the uri after we "download" the image or pdf. 
                                                                 //Normally we'd cache this instead of having to download every time, but I didn't have the time for that now
+   
+  const api = useApi();
+
   const openExternally = async () => {
     if (Platform.OS === 'ios') {
       // iOS can just open the file with default PDF app
@@ -34,7 +38,7 @@ const DetailsScreen = ({ route }: Props) => {
 const handleDownload = async () => {
   setDownloading(true);
   try {
-    const uri = await downloadPayslip(payslip);
+    const uri = await downloadPayslip(payslip, api); //the helper needs to know which API we're using, we're injecting it here
     setLocalUri(uri); // we'll want to open it from here later. 
     if (uri) { alert("File downloaded to: " + uri); }
     else { throw new Error();};

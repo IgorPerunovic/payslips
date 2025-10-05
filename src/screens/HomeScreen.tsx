@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity } from "react-native";
-import { fetchPayslips } from "../api/mockApi";
 import { Payslip } from "../types/payslip";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { usePayslips } from "../context/mainContext"
+import { useApi } from "../context/apiContext";
 
 interface Props {
   navigation: any; 
@@ -12,8 +12,10 @@ interface Props {
 export default function HomeScreen({ navigation }: Props) {
   const [loading, setLoading] = useState<boolean>(true);
   const { payslips, setPayslips } = usePayslips();
+  const { fetchPayslips } = useApi(); //dependency injection, we use mock api
 
-  useEffect(() => {
+
+  useEffect(() => { // we populate the initial list when we open the app
     const loadPayslips = async () => {
       setLoading(true);
       const data = await fetchPayslips(); // I thought this mock api call is more of what a real app would do I. It fills the context instead of the context being pre-filled. 
@@ -47,7 +49,7 @@ export default function HomeScreen({ navigation }: Props) {
     );
   };
 
-  if (loading) {
+  if (loading) { // we pretend we're "loading" the list initially.
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#0000FF" />

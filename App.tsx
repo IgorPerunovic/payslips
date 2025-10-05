@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PayslipsProvider } from "./src/context/mainContext";
 import * as MediaLibrary from 'expo-media-library';
+import { ApiProvider } from "./src/context/apiContext";
+import { mockApi } from "./src/api/mockApi"
 
 import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
@@ -19,13 +21,15 @@ export default function App() {
 
   requestPermission();
   return (
-    <PayslipsProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Details" component={DetailsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </PayslipsProvider>
+    <ApiProvider api={mockApi}>
+      <PayslipsProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Details" component={DetailsScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+      </PayslipsProvider>
+    </ApiProvider>
   );
 }

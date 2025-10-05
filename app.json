@@ -35,22 +35,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "58eebff0-917a-4047-9513-63eae5d89faa"
+      }
     }
-    // ,
-    // "plugins": [
-      // "expo-asset",
-      // [
-        // "expo-media-library",
-        // {
-        //   "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
-        //   "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
-        //   "isAccessMediaLocationEnabled": true,
-        //   "granularPermissions": [
-        //     "audio",
-        //     "photo"
-        //   ]
-        // }
-      // ]
-    // ]
   }
 }
